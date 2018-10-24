@@ -14,7 +14,11 @@ For starting presentation, just run
 
 Run `yarn start` . It has auto-reloading built-in.
 
-# Cypress
+# End-to-end: Using puppeteer
+
+`node e2e-via-puppeteer.spec.js`
+
+# End-to-end: Using Cypress
 
 ## Running Cypress Test Runner
 
