@@ -6,7 +6,8 @@
   "scripts": {
     "build": "yarn run remarker build",
     "start": "yarn run remarker serve",
-    "test": "echo \"Error: no test specified yet\" && exit 1"
+    "open": "yarn cypress open",
+    "test": "yarn cypress run"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,7 @@
   "author": "Robert Hostlowsky",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^3.1.0",
     "remarker": "1.9.4"
   }
 }

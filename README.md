@@ -14,3 +14,12 @@ For starting presentation, just run
 
 Run `yarn start` . It has auto-reloading built-in.
 
+# Cypress
+
+## Running Cypress Test Runner
+
+`yarn test`
+
+## Opening  Cypress Test Runner
+
+`yarn open`
