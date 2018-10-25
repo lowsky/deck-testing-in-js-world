@@ -1,0 +1,15 @@
+{
+  "name": "deck-testing-in-js-world",
+  "version": "1.0.0",
+  "private": true,
+  "description": "slide deck for: Modern Testing in the JavaScript World",
+  "scripts": {
+    "test": "echo \"Error: no test specified yet\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.codecentric.de:robert.hostlowsky/deck-testing-in-js-world.git"
+  },
+  "author": "Robert Hostlowsky",
+  "license": "ISC"
+}
