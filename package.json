@@ -4,6 +4,8 @@
   "private": true,
   "description": "slide deck for: Modern Testing in the JavaScript World",
   "scripts": {
+    "build": "yarn run remarker build",
+    "start": "yarn run remarker serve",
     "test": "echo \"Error: no test specified yet\" && exit 1"
   },
   "repository": {
