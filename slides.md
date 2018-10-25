@@ -97,10 +97,27 @@ class: middle
 
 > Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default, but can be configured to run full (non-headless) Chrome or Chromium.
 
+```js
+const puppeteer = require('puppeteer');
+
+puppeteer.launch().then(async browser => {
+  const page = await browser.newPage();
+  await page.goto('https://google.com');
+  const inputElement = await page.$('input[type=submit]');
+  await inputElement.click();
+  // ...
+});
+```
+https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle
+
+https://pptr.dev/#?product=Puppeteer&version=v1.9.0&show=outline
+
+https://github.com/transitive-bullshit/awesome-puppeteer
+--- 
+class: middle
 > What can I do?
 Most things that you can do manually in the browser can be done using Puppeteer! Here are a few examples to get you started:
----
-class: middle
+
 Generate **screenshots** and **PDFs** of pages.
 
 Crawl a SPA (Single-Page Application) and generate pre-rendered content (i.e. "SSR" (Server-Side Rendering)).
@@ -133,8 +150,13 @@ Puppeteer shines when it comes to debugging:
 You can even open Chrome DevTools to inspect the test environment.
 
 ---
-
 # ✨🎪 Dream team: Jest + puppeteer
+:zzz:
+:+1:
+:100:
+
+<img src="assets/jest+puppeteer.png" width="100%" />
+
 * https://github.com/smooth-code/jest-puppeteer
 * Can start a server
 * Run your tests using Jest & Puppeteer 
@@ -192,7 +214,7 @@ A free, open source, locally installed Test Runner + Dashboard Service for recor
  - Controlling Chrome Browser via devtools
 ---
 # Demo
-  - Let check it out: 
+  - Let's check it out: 
   - How? ...
 ---
 # Simple example
