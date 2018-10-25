@@ -11,5 +11,8 @@
     "url": "git@gitlab.codecentric.de:robert.hostlowsky/deck-testing-in-js-world.git"
   },
   "author": "Robert Hostlowsky",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "remarker": "1.9.4"
+  }
 }
