@@ -1,101 +1,194 @@
 class: center, middle
 
 # Modern Testing in Javascript World
-
+<!--
+background-image: url(image.jpg)
 .footnote[Go directly to [project site](https://github.com/gnab/remark)]     
+-->
+
 ---
+layout: true
+<style>.footnote {position: absolute; bottom:0.7em
+</style>
+<style>.rightFloat {position:absolute; right:0;
+</style>
+.footnote[Robert Hostlowsky | Modern Testing in JS World | Agile Testing Meetup | 2018]
+
+---
+name: agenda
 # Agenda
-Javascript Testing Meetup Oct. 26, 2018 Munich
+Agile Testing @Munich - Meetup | Oct. 26, 2018 Munich
 
 1. Let's talk about testing
-2. Unit testing with Jest
-  * Junit.js - What is Jest
-  * Runner - How to use Jest 
-  * CLI
-  * CI, Coverage
-  
-3. pptr
-  
-3. Cypress - modern e2e testing
+2. Unit testing with Jest  
+3. End-to-end testing: a challenge
+4. Puppeteer
+5. Cypress 
+
+Summary
+---
+class: center
+
+Robert Hostlowsky
+
+Consultant at codecentric AG, Germany
+
+web-dev-ops-qa-guy
+
+Twitter: @rhosts
+
+<img src="assets/meInNY.jpg" width="60%">
+
 
 ---
-
-# testing? 
-    Why? 
+class: center
+## Andrea Tomasini: 
+## "Agile Testing is nonsense, 
+--
+because Agile is about testing"
+    https://www.slideshare.net/tumma72/keynote-agile-testing
     
-    Testing Ice Cone -> Trophy: "Pokal"
+> "Testing is an attitude which brings us to trust results based on the fact that we can validate them."
+
+---
+class: 
+.center[
+Two sides of the same medal, different *focus*
+
+*Ice-cone of testing*: user / **business values**
+
+*Testing-pyramid*: developer **fast feedback + confidence**
+
+<img src="assets/agiletesting-icecone.jpg" width="60%">]
+---
+class: middle    
 # Let’s start with Unit tests
 ---
-class: center, middle
-
-<img src="assets/jest.png" width="100%" />
+class: middle
+.center[<img src="assets/jest.png" width="100%" />]
 ---
-# Runner U Jasmine
-      - sandboxed
-      - watch mode
----
-# Code / BDD style
+## Jest: A *modern* Test runner
+* Similar to Junit, phpunit, etc.
+* Built by facebook
 
-```javascript
-describe('testing', () => {
-    it('should work in bdd ', () => {
-        expect("jest contains jasmine").toContain('jasmine'))
-    })
-)}
+--
+* Based on *jasmine*
+
+--
+* Runs Tests **in parallel**
+
+--
+* All usual [matchers](https://jestjs.io/docs/en/using-matchers) we know from *chai* are already built-in
+--
+
+* Extensible: [Expect API](https://jestjs.io/docs/en/expect)
+---
+# Why Jest?
+## Easy setup [Getting started](https://jestjs.io/docs/en/getting-started)
+* :battery::battery: All batteries included
+* Install via `npm install -g -D jest`
+* Basic configuration file via `jest --init`
+* ES6 support with `babel-jest`
+* Typescript support with `ts-jest`
+* Same syntax as *Mocha* and *Chai*: BDD style like *Jasmine*
+```js
+describe('Test Code with Jest', () => {
+        it('should have Test runner
+            expect("Jest based on Jasmine").toContain('jasmine');
+        });
+    });
 ```
-* based on jasmine
-* `expect` built-in
-* [Expect API](https://jestjs.io/docs/en/expect)
-
----
-    - CI - junit-reporter
-    - Coverage
-    - Why Jest?
-      - easy setup
-      - docu
-      - ide: webstorm/vscode
-      - batteries included: package of … diff/parse/...
----
-# How jest saves time:
-## watch
-- ONLY changed files !!!
-- watch mode 
-- superb meaningful error reports
-    - filter ...
-- How to ...
-    - Code + spec in one folder or __test__
----
-# typical use-cases
-## async
----
-# typical use-cases
-## mocking: manual/mock functions
----
-# typical use-cases
-## matchers
----
-# Snapshot testing
-## not writing many  input/result  maps
-~ replace many asserts/equals
-~ ui component comparison
----
-# Integration testing
-- Why?
-toilet door
----
-class: center,middle
-# End-to-end testing
----
-class: right
-### Trophy by Kent C. Dodds
-<img src="assets/trophy-all.png" width="80%" />
 ---
 class: middle
-# pptr
+# Why Jest?
 
-- headless / with puppeteer
+* Great documentation 
+* Coverage Report built-in
+* CI support with junit-reporter
+* Each test has its own virtual environment
+* Ide support: atom/webstorm/vscode ...
+---
+class: middle
+# How Jest saves time? :watch:
+## watch-mode 🔎
+* only changed files, git based !
+* module dependencies!
 
-> Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default, but can be configured to run full (non-headless) Chrome or Chromium.
+## astonishing clear test/error results
+
+### -> see in demo :tv:
+---
+class: middle
+## asynchronous code ✔
+```js
+// async/await can be used.
+it('works with async/await', async () => {
+  expect.assertions(1);
+  const data = await user.getUserName(4);
+  expect(data).toEqual('Mark');
+});
+```
+```js
+it('works with promises', () => {
+  return user.getUserName(4)
+  .then(data => expect(data)
+  .toEqual('Mark'));
+});
+```
+https://jestjs.io/docs/en/asynchronous
+---
+class: middle
+## mocking: built-in ✔
+[https://jestjs.io/docs/en/mock-functions]
+ 
+---
+class: middle
+## matchers: built-in ✔
+[https://jestjs.io/docs/en/expect]
+
+---
+class: center,middle
+# :camera: Snapshot testing 
+---
+<img src="assets/jest-snapshots.png" width="100%"/>
+---
+class: middle
+## Use cases for Snapshot testing
+* replace many asserts/equals
+* ui component comparison
+* graphql response
+* ...
+---
+# Integration Testing
+
+.middle[What if you only have unit tests ...] 
+
+from "painless-react-testing" by [Gled Bahmutov](https://slides.com/bahmutov/painless-react-testing#/1/3)
+
+<video width="800" height="400" controls src="assets/bahmutov-unit_integration.mov" />
+---
+class: center,middle
+# End-to-end Testing
+---
+
+## Testing trophy by Kent C. Dodds:
+.right[<img src="assets/trophy-all.png" width="80%" />]
+
+---
+# Challenge: How can we test this app:
+
+<img src="assets/coolboard-screenshot.png" width="80%" />
+---
+<video width="800" height="500" controls src="assets/e2e-challenge.mov" />
+
+---
+.center[<img src="assets/pptr.png">]
+---
+class: middle
+## https://pptr.dev
+> Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol. 
+
+> Puppeteer runs **headless by default**
 
 ```js
 const puppeteer = require('puppeteer');
@@ -108,58 +201,17 @@ puppeteer.launch().then(async browser => {
   // ...
 });
 ```
-https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle
+[https://github.com/transitive-bullshit/awesome-puppeteer]
 
-https://pptr.dev/#?product=Puppeteer&version=v1.9.0&show=outline
-
-https://github.com/transitive-bullshit/awesome-puppeteer
---- 
-class: middle
-> What can I do?
-Most things that you can do manually in the browser can be done using Puppeteer! Here are a few examples to get you started:
-
-Generate **screenshots** and **PDFs** of pages.
-
-Crawl a SPA (Single-Page Application) and generate pre-rendered content (i.e. "SSR" (Server-Side Rendering)).
-
-Automate form submission, UI testing, keyboard input, etc.
-
-Create an up-to-date, automated testing environment. Run your tests directly in the latest version of Chrome using the latest JavaScript and browser features.
-
-Capture a timeline trace of your site to help diagnose performance issues.
-
-Test Chrome Extensions.
-
-https://try-puppeteer.appspot.com/
+---
+class: middle,center
+## Dream-team: Jest + puppeteer ✨
+<img src="assets/jest+puppeteer.png" width="80%" />
 ---
 class: middle
-Puppeteer is a Node library which provides a high-level API to control Chromium over the DevTools Protocol.
 
-WHY?
-That said, you can use Puppeteer to run tests against Chromium, e.g. using the community-driven jest-puppeteer. While this probably shouldn’t be your only testing solution, it does have a few good points compared to WebDriver:
----
-Puppeteer requires zero setup and comes bundled with the Chromium version it works best with, making it very easy to start with. At the end of the day, it’s better to have a few tests running chromium-only, than no tests at all.
-Puppeteer has event-driven architecture, which removes a lot of potential flakiness. There’s no need for evil “sleep(1000)” calls in puppeteer scripts.
----
-Puppeteer runs headless by default, which makes it fast to run. Puppeteer v1.5.0 also exposes browser contexts, making it possible to efficiently parallelize test execution.
----
-Puppeteer shines when it comes to debugging: 
-
- * flip the “headless” bit to false, add “slowMo”, and you’ll see what the browser is doing. 
-
-You can even open Chrome DevTools to inspect the test environment.
-
----
-# ✨🎪 Dream team: Jest + puppeteer
-:zzz:
-:+1:
-:100:
-
-<img src="assets/jest+puppeteer.png" width="100%" />
-
-* https://github.com/smooth-code/jest-puppeteer
-* Can start a server
-* Run your tests using Jest & Puppeteer 
+###  [jest-puppeteer](https://github.com/smooth-code/jest-puppeteer)
+* 🎁 Extra: Can start a server as part of test suite
 
 ``` json
 {
@@ -177,7 +229,7 @@ describe('Google', () => {
 })
 ```
 ---
-Nice Expect API available:
+### More extra helpers
 
 
 ``` js
@@ -194,74 +246,177 @@ await expect(page).toMatch('Text in the page')
 const inputElement = await page.$('input[type=submit]');
 await inputElement.click();
 ```
-...
+and more ...
+---
+class: middle.
+## demo time
+
+* recording manual steps via puppeteer recorder (chrome extension),
+* which generates javascript code
 
 ---
-class: center,middle,inverse
-![cypress](assets/cypresslogo.png)
+```js
+const puppeteer = require('puppeteer');
+(async () => {
+    const browser = await puppeteer.launch({ 
+        devtools: false, slowMo: 0, headless: false 
+    })
+    const page = await browser.newPage()
+    await page.goto('https://www.coolboard.fun/')
 
+    let boards = '.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)';
+    await page.waitForSelector(boards)
+    await page.click(boards)
+
+    await page.waitForSelector('.App > .sc-bdVaJa > .ui > p > a')
+    await page.click('.App > .sc-bdVaJa > .ui > p > a')
+
+    let auth0LockInputEmail = 'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
+    await page.waitForSelector(auth0LockInputEmail)
+    await page.click(auth0LockInputEmail)
+
+    await page.type(auth0LockInputEmail, Email_Adress)
+    let auth0LockInputPassword = 'div > div > .auth0-lock-input-password > .auth0-lock-input-wrap > .auth0-lock-input';
+    // ...
+```
+---
+class: middle
+### Learnings:
+
+    + easy to start quickly
+    + for simple web site sufficient
+    + slow-motion mode helps to analyse 
+    - hard to maintain, because of "cryptic"_ selectors 
+    - one long test plan hard to debug
+    - must run no-headless to see progress
+
+---
+class: inverse
+.middle[<img src="assets/cypresslogo.png" width="100%"/>
+]
 ---
 # Cypress - What is it?
 
-A free, open source, locally installed Test Runner + Dashboard Service for recording your tests.
+A **free**, **open source**, **locally** installed Test Runner + **Dashboard Service** for recording your tests.
   
   Git: 1st commit **Jun 5, 2014**
   
   Public beta: **Oct 9, 2017**
     
  - Test-Runner in an Electron-App
- - bundled with mocha, jquery, sinon, chai
+ - Bundled with mocha, jquery, sinon, chai
  - Controlling Chrome Browser via devtools
 ---
-# Demo
-  - Let's check it out: 
-  - How? ...
+  <video width="800" height="500" controls src="assets/cypress-installing-cli.mp4"></video>
+  [cypress, Setting up](https://docs.cypress.io/guides/overview/why-cypress.html#Setting-up-tests)
 ---
-# Simple example
-# more complex
+  <video width="800" height="500" controls src="https://docs.cypress.io/img/snippets/writing-tests.0b201bd1.mp4"></video>
+  [cypress, Writing tests](https://docs.cypress.io/guides/overview/why-cypress.html#Writing-tests)
 ---
-# Some Features
-     - Super Fast
-     - dashboard
-     - time-travel
-     - recording screenshots/videos/DOM+events
-     - devtools built-in
-     - Debuggability
-     - Spies, Stubs, and Clocks, for full control
-     - Automatic Waiting
-     - Consistent Results: Our architecture doesn’t use Selenium or WebDriver.
-     - easy side-effects, e.g. DB reset, inject data
-     - tighly integrated with Browser, e.g. cookies
+  <video width="800" height="500" controls src="https://docs.cypress.io/img/snippets/running-tests.4bae660a.mp4"></video>
+  [cypress, Running tests](https://docs.cypress.io/guides/overview/why-cypress.html#Running-tests)
 ---
-# Missing/Limits
-     - Limited to chrome
-     - some specific browser features (?)
-     - only javascript
-     - no jest support
-    https://docs.cypress.io/guides/references/trade-offs.html#Permanent-trade-offs-1
----
-# Why soo coool?
-     - Integration testing from user perspective
-     - fast
-     - easy: all stuff built-in
-     - Network XHR interception/mock/spy
-     - Parallel testing (easy scaling CI)
-## Compared to selenium:
-    - faster
-    - autorun/rerun
-    - all in one place
-    - more stable, compared to wire protocol
----
-# planned features / roadmap
-[Upcoming-Features](https://docs.cypress.io/guides/references/roadmap.html#Upcoming-Features):
+class: middle
 
-    - Cross Browser Support (Firefox, IE11) - #310
-    - screen diffing
-    - native events / mobile device support
+## Many great tutorials, videos, and examples:
+
+https://www.cypress.io/how-it-works/
+
+https://docs.cypress.io/examples/examples/recipes.html
 
 ---
-# Extras, other topics
+class: middle
 
-- Other advanced testing stuff
-  - visual snapshot testing - with storybook / chromatest-loop
-  - In-browser tests with selenium nightmare?
+.center[# Demo
+]
+---
+```js
+const gotoBoards = 
+    () => cy.get('.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)').click();
+function clickLogin() {
+    return cy.get('.App > .sc-bdVaJa > .ui > p > a').click();
+}
+describe('Checkout cypress', function() {
+    it('tests coolboard', function() {
+        cy.visit('https://www.coolboard.fun/');
+
+        gotoBoards();
+        clickLogin();
+
+        cy.get(auth0LockInputEmail).type('MyEmail.com');
+        cy.get(auth0LockInputPassword).type(password, { log: false });
+        cy.get('#auth0-lock-container-1 > div > div.auth0-lock-center > form > div > div > button > span')
+            .click()
+            .wait(2000);   // workaround for loading new data from server.
+        
+        gotoBoards();
+
+        const Create_New_Board_button = '.App > .sc-bdVaJa > .sc-bdVaJa > .ui > .ui';
+        cy.get(Create_New_Board_button).click();
+        //...
+
+        cy.pause();
+```
+---
+  <video width="800" height="500" controls src="assets/coolboard-cypress-tests.mov"></video>
+---
+class: middle
+# Why soo coool :cool:?
+* Integration testing from user perspective
+* Fast
+* Easy: all stuff built-in
+* Network XHR interception/mock/spy
+* Parallel testing (easy scaling CI)
+---
+class: middle
+## Comparison to Selenium:
+* Faster :runner:
+* Autorun/rerun
+* All in one place
+* More stable, compared to wire protocol
+---
+class: middle
+## Some limits
+* Limited to Chrome/Chromium/Electron
+* Only javascript/typescript
+* No jest support
+
+See cypress page about [trade-offs](https://docs.cypress.io/guides/references/trade-offs.html)
+---
+class: middle
+## Roadmap
+
+* Cross Browser Support (Firefox, IE11) - #310
+* 🖥 Screen diffing
+* Native events
+* 📱 mobile device support
+
+More on [Upcoming-Features](https://docs.cypress.io/guides/references/roadmap.html#Upcoming-Features):
+
+---
+## Cypress summary
+
+**More control** and **better insights** than with Jest/Puppeteer:
+
+In the protocol you can additionally see the XHR requests and even all navigation!
+That has been a problem with Puppeteer, but was easy to detect!
+
+For even better experience: 
+* Have many tests, 
+* Test the log-in only once,
+* Mock the REST api communication for speed-up
+
+---
+class: middle
+# Recommendation
+Write unit tests with **Jest** 
+  
+  🎁 Best for Fast Feedback for development / TDD
+
+Have end-to-end tests with **Cypress** 
+
+  🎁 Best for check meeting of the business needs
+  
+    Cypress for the important (happy path) use cases
+  
+    Small number of additional *Selenium* tests for some edge cases on other browsers
