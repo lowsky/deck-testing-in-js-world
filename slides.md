@@ -1,19 +1,18 @@
-class: center, middle
-
-# Modern Testing in Javascript World
-<!--
-background-image: url(image.jpg)
-.footnote[Go directly to [project site](https://github.com/gnab/remark)]     
--->
-
----
 layout: true
 <style>.footnote {position: absolute; bottom:0.7em
 </style>
 <style>.rightFloat {position:absolute; right:0;
 </style>
 .footnote[Robert Hostlowsky | Modern Testing in JS World | Agile Testing Meetup | 2018]
+---
+class: middle
+.center[# Modern Testing in Javascript World
+]
 
+<!--
+background-image: url(image.jpg)
+.footnote[Go directly to [project site](https://github.com/gnab/remark)]     
+-->
 ---
 name: agenda
 # Agenda
