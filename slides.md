@@ -3,7 +3,7 @@ layout: true
 </style>
 <style>.rightFloat {position:absolute; right:0;
 </style>
-.footnote[Robert Hostlowsky | Modern Testing in JS World | Agile Testing Meetup | 2018]
+.footnote[Robert Hostlowsky | MunichJs - Meetup | May, 2019 @Holidaycheck ]
 ---
 class: middle
 .center[# Modern Testing in Javascript World
@@ -16,7 +16,7 @@ background-image: url(image.jpg)
 ---
 name: agenda
 # Agenda
-Agile Testing @Munich - Meetup | Oct. 26, 2018 Munich
+MunichJs - Meetup | May, 2019 @Holidaycheck
 
 1. Let's talk about testing
 2. Unit testing with Jest  
@@ -66,98 +66,6 @@ class: middle
 class: middle
 .center[<img src="assets/jest.png" width="100%" />]
 ---
-## Jest: A *modern* Test runner
-* Similar to Junit, phpunit, etc.
-* Built by facebook
-
---
-* Based on *jasmine*
-
---
-* Runs Tests **in parallel**
-
---
-* All usual [matchers](https://jestjs.io/docs/en/using-matchers) we know from *chai* are already built-in
---
-
-* Extensible: [Expect API](https://jestjs.io/docs/en/expect)
----
-# Why Jest?
-## Easy setup [Getting started](https://jestjs.io/docs/en/getting-started)
-* :battery::battery: All batteries included
-* Install via `npm install -g -D jest`
-* Basic configuration file via `jest --init`
-* ES6 support with `babel-jest`
-* Typescript support with `ts-jest`
-* Same syntax as *Mocha* and *Chai*: BDD style like *Jasmine*
-```js
-describe('Test Code with Jest', () => {
-        it('should have Test runner
-            expect("Jest based on Jasmine").toContain('jasmine');
-        });
-    });
-```
----
-class: middle
-# Why Jest?
-
-* Great documentation 
-* Coverage Report built-in
-* CI support with junit-reporter
-* Each test has its own virtual environment
-* Ide support: atom/webstorm/vscode ...
----
-class: middle
-# How Jest saves time? :watch:
-## watch-mode 🔎
-* only changed files, git based !
-* module dependencies!
-
-## astonishing clear test/error results
-
-### -> see in demo :tv:
----
-class: middle
-## asynchronous code ✔
-```js
-// async/await can be used.
-it('works with async/await', async () => {
-  expect.assertions(1);
-  const data = await user.getUserName(4);
-  expect(data).toEqual('Mark');
-});
-```
-```js
-it('works with promises', () => {
-  return user.getUserName(4)
-  .then(data => expect(data)
-  .toEqual('Mark'));
-});
-```
-https://jestjs.io/docs/en/asynchronous
----
-class: middle
-## mocking: built-in ✔
-[https://jestjs.io/docs/en/mock-functions]
- 
----
-class: middle
-## matchers: built-in ✔
-[https://jestjs.io/docs/en/expect]
-
----
-class: center,middle
-# :camera: Snapshot testing 
----
-<img src="assets/jest-snapshots.png" width="100%"/>
----
-class: middle
-## Use cases for Snapshot testing
-* replace many asserts/equals
-* ui component comparison
-* graphql response
-* ...
----
 # Integration Testing
 
 .middle[What if you only have unit tests ...] 
@@ -203,55 +111,10 @@ puppeteer.launch().then(async browser => {
 [https://github.com/transitive-bullshit/awesome-puppeteer]
 
 ---
-class: middle,center
-## Dream-team: Jest + puppeteer ✨
-<img src="assets/jest+puppeteer.png" width="80%" />
----
-class: middle
-
-###  [jest-puppeteer](https://github.com/smooth-code/jest-puppeteer)
-* 🎁 Extra: Can start a server as part of test suite
-
-``` json
-{
-  "preset": "jest-puppeteer"
-}```
-
-``` js
-describe('Google', () => {
-  beforeAll(async () => {
-    await page.goto('https://google.com')
-  })
-  it('should display "google" text on page', async () => {
-    await expect(page).toMatch('google')
-  })
-})
-```
----
-### More extra helpers
-
-
-``` js
-// Assert that a button containing text "Home" will be clicked
-await expect(page).toClick('button', { text: 'Home' })
-```
-
-``` js
-// Assert that current page contains 'Text in the page'
-await expect(page).toMatch('Text in the page')
-```
-``` js
-// submit a form
-const inputElement = await page.$('input[type=submit]');
-await inputElement.click();
-```
-and more ...
----
 class: middle.
-## demo time
 
-* recording manual steps via puppeteer recorder (chrome extension),
-* which generates javascript code
+* after recording manual steps via puppeteer recorder (chrome extension),
+* generated javascript code
 
 ---
 ```js
@@ -283,11 +146,9 @@ class: middle
 ### Learnings:
 
     + easy to start quickly
-    + for simple web site sufficient
     + slow-motion mode helps to analyse 
     - hard to maintain, because of "cryptic"_ selectors 
     - one long test plan hard to debug
-    - must run no-headless to see progress
 
 ---
 class: inverse
@@ -329,6 +190,7 @@ class: middle
 .center[# Demo
 ]
 ---
+
 ```js
 const gotoBoards = 
     () => cy.get('.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)').click();
