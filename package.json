@@ -1,6 +1,6 @@
 {
   "name": "deck-testing-in-js-world",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "slide deck for: Modern Testing in the JavaScript World",
   "scripts": {
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.codecentric.de:robert.hostlowsky/deck-testing-in-js-world.git"
+    "url": "git@github.com:lowsky/deck-testing-in-js-world.git"
   },
   "author": "Robert Hostlowsky",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^3.2.0",
     "puppeteer": "^1.15.0",
-    "remarker": "github:lowsky/remarker"
+    "remarker": "1.9.4"
   }
 }
