@@ -3,7 +3,7 @@ layout: true
 </style>
 <style>.rightFloat {position:absolute; right:0;
 </style>
-.footnote[Robert Hostlowsky | MunichJs - Meetup | May, 2019 @Holidaycheck ]
+.footnote[Robert Hostlowsky @rhosts | JScraftcamp | July, 2019]
 ---
 class: middle
 .center[# Modern Testing in Javascript World
@@ -16,7 +16,7 @@ background-image: url(image.jpg)
 ---
 name: agenda
 # Agenda
-MunichJs - Meetup | May, 2019 @Holidaycheck
+JSCraftcamp | July, 2019 
 
 1. Let's talk about testing
 2. Unit testing with Jest  
@@ -38,17 +38,6 @@ Twitter: @rhosts
 
 <img src="assets/meInNY.jpg" width="60%">
 
-
----
-class: center
-## Andrea Tomasini: 
-## "Agile Testing is nonsense, 
---
-because Agile is about testing"
-    https://www.slideshare.net/tumma72/keynote-agile-testing
-    
-> "Testing is an attitude which brings us to trust results based on the fact that we can validate them."
-
 ---
 class: 
 .center[
@@ -66,6 +55,7 @@ class: middle
 class: middle
 .center[<img src="assets/jest.png" width="100%" />]
 ---
+
 # Integration Testing
 
 .middle[What if you only have unit tests ...] 
@@ -79,9 +69,10 @@ class: center,middle
 ---
 
 ## Testing trophy by Kent C. Dodds:
-.right[<img src="assets/trophy-all.png" width="80%" />]
+.right[<img src="assets/trophy-all.png" width="70%" />]
 
 ---
+
 # Challenge: How can we test this app:
 
 <img src="assets/coolboard-screenshot.png" width="80%" />
@@ -114,9 +105,8 @@ puppeteer.launch().then(async browser => {
 class: middle.
 
 * after recording manual steps via puppeteer recorder (chrome extension),
-* generated javascript code
+* generated javascript code:
 
----
 ```js
 const puppeteer = require('puppeteer');
 (async () => {
@@ -155,6 +145,7 @@ class: inverse
 .middle[<img src="assets/cypresslogo.png" width="100%"/>
 ]
 ---
+
 # Cypress - What is it?
 
 A **free**, **open source**, **locally** installed Test Runner + **Dashboard Service** for recording your tests.
