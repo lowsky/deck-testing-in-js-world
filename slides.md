@@ -3,7 +3,7 @@ layout: true
 </style>
 <style>.rightFloat {position:absolute; right:0;
 </style>
-.footnote[Robert Hostlowsky @rhosts | JScraftcamp | July, 2019]
+.footnote[Robert Hostlowsky @rhosts | JSCraftcamp | July, 2019]
 ---
 class: middle
 .center[# Modern Testing in Javascript World
