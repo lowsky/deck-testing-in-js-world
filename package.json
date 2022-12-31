@@ -16,7 +16,7 @@
   "author": "Robert Hostlowsky",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "3.4.0",
+    "cypress": "3.8.3",
     "puppeteer": "1.20.0",
     "remarker": "1.15.0"
   }
