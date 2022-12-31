@@ -127,6 +127,7 @@ it('works with async/await', async () => {
   expect(data).toEqual('Mark');
 });
 ```
+or
 ```js
 it('works with promises', () => {
   return user.getUserName(4)
@@ -153,28 +154,35 @@ class: center,middle
 ---
 class: middle
 ## Use cases for Snapshot testing
-* replace many asserts/equals
-* ui component comparison
-* graphql response
+* Replacing many asserts/equals 
+* UI component comparison
+* GraphQL response
 * ...
 ---
+
+# What, if only having unit tests ...?
+
+---
+
 # Integration Testing
 
-.middle[What if you only have unit tests ...] 
-
-from "painless-react-testing" by [Gled Bahmutov](https://slides.com/bahmutov/painless-react-testing#/1/3)
-
+(from "painless-react-testing" by [Gleb Bahmutov](https://slides.com/bahmutov/painless-react-testing#/1/3)):
 <video width="800" height="400" controls src="assets/bahmutov-unit_integration.mov" />
 ---
 class: center,middle
 # End-to-end Testing
+
+Full coverage with **"the Testing trophy"** by Kent C. Dodds:
+
 ---
 
-## Testing trophy by Kent C. Dodds:
 .right[<img src="assets/trophy-all.png" width="80%" />]
 
 ---
-# Challenge: How can we test this app:
+class: center
+
+# Challenge 🏋️‍♀️
+### 🤔 How can we test this app:
 
 <img src="assets/coolboard-screenshot.png" width="80%" />
 ---
@@ -210,7 +218,8 @@ class: middle,center
 class: middle
 
 ###  [jest-puppeteer](https://github.com/smooth-code/jest-puppeteer)
-* 🎁 Extra: Can start a server as part of test suite
+
+🎁 Extra: Automatically starts a server as part of test suite
 
 ``` json
 {
@@ -228,6 +237,7 @@ describe('Google', () => {
 })
 ```
 ---
+
 ### More extra helpers
 
 
@@ -245,11 +255,13 @@ await expect(page).toMatch('Text in the page')
 const inputElement = await page.$('input[type=submit]');
 await inputElement.click();
 ```
-and more ...
+and more on
+https://github.com/smooth-code/jest-puppeteer
+
 ---
 class: middle.
 
-* after recording manual steps via puppeteer recorder (chrome extension),
+* after 📹 recording manual steps via **puppeteer recorder** (a chrome extension),
 * generated javascript code:
 
 ```js
@@ -261,14 +273,14 @@ const puppeteer = require('puppeteer');
     const page = await browser.newPage()
     await page.goto('https://www.coolboard.fun/')
 
-    let boards = '.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)';
+    const boards = '.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)';
     await page.waitForSelector(boards)
     await page.click(boards)
 
     await page.waitForSelector('.App > .sc-bdVaJa > .ui > p > a')
     await page.click('.App > .sc-bdVaJa > .ui > p > a')
 
-    let auth0LockInputEmail = 'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
+    const auth0LockInputEmail = 'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
     await page.waitForSelector(auth0LockInputEmail)
     await page.click(auth0LockInputEmail)
 
@@ -280,15 +292,16 @@ const puppeteer = require('puppeteer');
 class: middle
 ### Learnings:
 
-    + easy to start quickly
-    + slow-motion mode helps to analyse 
-    - hard to maintain, because of "cryptic"_ selectors 
-    - one long test plan hard to debug
+    👍 easy to start quickly
+    👍 slow-motion mode helps to analyse
+
+    👎 hard to maintain, because of "cryptic" _ selectors 
+    👎 one long test plan hard to debug
 
 ---
-class: inverse
-.middle[<img src="assets/cypresslogo.png" width="100%"/>
-]
+class: inverse,middle
+<img src="assets/cypresslogo.png" width="100%"/>
+
 ---
 
 # Cypress - What is it?
@@ -299,7 +312,7 @@ A **free**, **open source**, **locally** installed Test Runner + **Dashboard Ser
   
   Public beta: **Oct 9, 2017**
     
- - Test-Runner in an Electron-App
+ - Test-Runner inside Chrome Browser or Electron-App
  - Bundled with mocha, jquery, sinon, chai
  - Controlling Chrome Browser via devtools
 ---
@@ -328,31 +341,32 @@ class: middle
 ---
 
 ```js
-const gotoBoards = 
-    () => cy.get('.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)').click();
+function gotoBoards () { 
+  return cy.get('.sc-bdVaJa > .ui > .ui > p > a:nth-child(2)').click() 
+}
 function clickLogin() {
     return cy.get('.App > .sc-bdVaJa > .ui > p > a').click();
 }
-describe('Checkout cypress', function() {
-    it('tests coolboard', function() {
-        cy.visit('https://www.coolboard.fun/');
+describe('Checkout cypress', () => {
+    it('tests coolboard', () => {
+      cy.visit('https://www.coolboard.fun/');
 
-        gotoBoards();
-        clickLogin();
+      gotoBoards();
+      clickLogin();
 
-        cy.get(auth0LockInputEmail).type('MyEmail.com');
-        cy.get(auth0LockInputPassword).type(password, { log: false });
-        cy.get('#auth0-lock-container-1 > div > div.auth0-lock-center > form > div > div > button > span')
-            .click()
-            .wait(2000);   // workaround for loading new data from server.
-        
-        gotoBoards();
+      cy.get(auth0LockInputEmail).type('MyEmail.com');
+      cy.get(auth0LockInputPassword).type(password, {log: false});
+      cy.get('#auth0-lock-container-1 form  button')
+        .click()
+        .wait(2000);   // workaround for loading new data from server.
 
-        const Create_New_Board_button = '.App > .sc-bdVaJa > .sc-bdVaJa > .ui > .ui';
-        cy.get(Create_New_Board_button).click();
-        //...
+      gotoBoards();
 
-        cy.pause();
+      const New_Board_button = '.App > .sc-bdVaJa .ui';
+      cy.get(New_Board_button).click();
+      //...
+    }
+}
 ```
 ---
   <video width="800" height="500" controls src="assets/coolboard-cypress-tests.mov"></video>
@@ -374,16 +388,14 @@ class: middle
 ---
 class: middle
 ## Some limits
-* Limited to Chrome/Chromium/Electron
 * Only javascript/typescript
-* No jest support
+* Limited jest support
 
 See cypress page about [trade-offs](https://docs.cypress.io/guides/references/trade-offs.html)
 ---
 class: middle
 ## Roadmap
 
-* Cross Browser Support (Firefox, IE11) - #310
 * 🖥 Screen diffing
 * Native events
 * 📱 mobile device support
@@ -416,4 +428,4 @@ Have end-to-end tests with **Cypress**
   
     Cypress for the important (happy path) use cases
   
-    Small number of additional *Selenium* tests for some edge cases on other browsers
+    Small number of additional *UI browser* tests for some edge cases on other browsers
