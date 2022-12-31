@@ -6,6 +6,7 @@
   "scripts": {
     "build": "yarn run remarker build",
     "start": "yarn run remarker serve",
+    "deploy": "gh-pages -d build",
     "open": "yarn cypress open",
     "test": "yarn cypress run"
   },
@@ -17,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "12.2.0",
+    "gh-pages": "4.0.0",
     "puppeteer": "19.4.1",
     "remarker": "1.15.0"
   }
