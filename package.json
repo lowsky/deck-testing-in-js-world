@@ -16,10 +16,12 @@
   },
   "author": "Robert Hostlowsky",
   "license": "ISC",
-  "devDependencies": {
-    "cypress": "12.2.0",
+  "dependencies": {
     "gh-pages": "4.0.0",
     "puppeteer": "19.4.1",
     "remarker": "1.15.0"
+  },
+  "devDependencies": {
+    "cypress": "12.2.0"
   }
 }
