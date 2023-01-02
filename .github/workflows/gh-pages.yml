@@ -31,10 +31,10 @@ jobs:
       - run: npm --version
 
       - name: Install npm dependencies
-        run: npm install --omit=dev # switch to `ci` when Node.js 6.x is dropped
+        run: npm install --omit=dev
 
       - name: Build static page with slides
-        run: npm build
+        run: npm run build
 
       - name: deploy gh-pages
-        run: npm deploy
+        run: npm run deploy
