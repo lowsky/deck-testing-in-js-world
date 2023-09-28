@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "gh-pages": "6.0.0",
-    "puppeteer": "20.9.0",
+    "puppeteer": "21.3.5",
     "remarker": "1.15.0"
   },
   "devDependencies": {
