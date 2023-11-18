@@ -17,7 +17,7 @@
   "author": "Robert Hostlowsky",
   "license": "ISC",
   "dependencies": {
-    "gh-pages": "6.0.0",
+    "gh-pages": "6.1.0",
     "puppeteer": "21.3.8",
     "remarker": "1.15.0"
   },
