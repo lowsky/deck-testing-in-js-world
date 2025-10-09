@@ -30,11 +30,11 @@ class: center
 
 Robert Hostlowsky
 
-Consultant at codecentric AG, Germany
+Consultant at codecentric AG, Germany, since 2020: working at instana
 
 web-dev-ops-qa-guy
 
-Twitter: @rhosts
+Mastodon: https://mastodontech.de/@lowsky
 
 <img src="assets/meInNY.jpg" width="60%">
 
